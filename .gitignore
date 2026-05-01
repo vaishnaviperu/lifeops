@@ -1,7 +1,9 @@
-echo "node_modules/
-.env
+node_modules/
+frontend/node_modules/
+.venv/
+backend/.venv/
 __pycache__/
 *.pyc
-.venv/
+.env
 dist/
-build/" >> .gitignore
+build/

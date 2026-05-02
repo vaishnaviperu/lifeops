@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { 
   Home, Activity, CheckSquare, Calendar, DollarSign, 
   CreditCard, FileText, Settings, Target, BarChart2, 
@@ -8,17 +9,17 @@ import {
 
 const Sidebar = () => {
   const menuItems = [
-    { icon: <Home size={18} />, label: 'Home', active: true },
-    { icon: <Activity size={18} />, label: 'Life Dashboard' },
-    { icon: <CheckSquare size={18} />, label: 'Tasks' },
-    { icon: <Calendar size={18} />, label: 'Calendar' },
-    { icon: <DollarSign size={18} />, label: 'Finance' },
-    { icon: <CreditCard size={18} />, label: 'Subscriptions' },
-    { icon: <FileText size={18} />, label: 'Documents' },
-    { icon: <Settings size={18} />, label: 'Workflows' },
-    { icon: <Target size={18} />, label: 'Goals' },
-    { icon: <BarChart2 size={18} />, label: 'Reports' },
-    { icon: <Zap size={18} />, label: 'AI Insights' },
+    { icon: <Home size={18} />, label: 'Home', path: '/' },
+    { icon: <Activity size={18} />, label: 'Life Dashboard', path: '/dashboard' },
+    { icon: <CheckSquare size={18} />, label: 'Tasks', path: '/tasks' },
+    { icon: <Calendar size={18} />, label: 'Calendar', path: '/calendar' },
+    { icon: <DollarSign size={18} />, label: 'Finance', path: '/finance' },
+    { icon: <CreditCard size={18} />, label: 'Subscriptions', path: '/subscriptions' },
+    { icon: <FileText size={18} />, label: 'Documents', path: '/documents' },
+    { icon: <Settings size={18} />, label: 'Workflows', path: '/workflows' },
+    { icon: <Target size={18} />, label: 'Goals', path: '/goals' },
+    { icon: <BarChart2 size={18} />, label: 'Reports', path: '/reports' },
+    { icon: <Zap size={18} />, label: 'AI Insights', path: '/insights' },
   ];
 
   const agentItems = [
@@ -52,17 +53,17 @@ const Sidebar = () => {
         <ul className="space-y-1">
           {menuItems.map((item, index) => (
             <li key={index}>
-              <a 
-                href="#" 
-                className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  item.active 
+              <NavLink 
+                to={item.path}
+                className={({ isActive }) => `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  isActive 
                     ? 'bg-purple-50 text-purple-700' 
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                 }`}
               >
                 {item.icon}
                 {item.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -73,15 +74,14 @@ const Sidebar = () => {
           <ul className="space-y-1">
             {agentItems.map((item, index) => (
               <li key={index}>
-                <a 
-                  href="#" 
-                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+                <div 
+                  className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 cursor-default"
                 >
-                  <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100">
                     {item.icon}
                   </div>
                   {item.label}
-                </a>
+                </div>
               </li>
             ))}
           </ul>
@@ -89,7 +89,7 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Profile */}
-      <div className="p-4 border-t border-gray-200">
+      <div className="p-4 border-t border-gray-200 bg-white sticky bottom-0">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center text-gray-600 font-bold">
             AS

@@ -4,7 +4,7 @@ class FinanceAgent(BaseAgent):
     def __init__(self):
         super().__init__("Finance Agent")
 
-    def process(self, amount: int, event_type: str):
+    def check_budget_context(self, amount: int, event_type: str):
         # Mock logic to check if funds are available or payment context
         status = "OK"
         if amount > 10000:

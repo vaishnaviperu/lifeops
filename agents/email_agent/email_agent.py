@@ -5,7 +5,7 @@ class EmailAgent(BaseAgent):
     def __init__(self):
         super().__init__("Email Agent")
 
-    def process(self, text: str):
+    def extract_event(self, text: str):
         # Mock logic to extract type, amount, due date from text
         # e.g., "Electricity bill of ₹2,300 is due on 05 May."
         event_type = "Unknown"

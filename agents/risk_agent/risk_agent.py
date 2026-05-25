@@ -4,7 +4,7 @@ class RiskAgent(BaseAgent):
     def __init__(self):
         super().__init__("Risk Agent")
 
-    def process(self, event_type: str, days_until_due: int):
+    def assess_risk(self, event_type: str, days_until_due: int):
         # Mock logic to assess risk
         level = "Low"
         reason = "Plenty of time to act."

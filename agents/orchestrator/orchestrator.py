@@ -18,18 +18,18 @@ class OrchestratorAgent(BaseAgent):
 
     def process(self, event_text: str):
         # 1. Sense: Extract info from event text
-        email_data = self.email_agent.process(event_text)
+        email_data = self.email_agent.extract_event(event_text)
         
         # 2. Reason: Analyze financial and schedule context
-        finance_data = self.finance_agent.process(email_data["amount"], email_data["type"])
-        calendar_data = self.calendar_agent.process(email_data["due_date"])
-        risk_data = self.risk_agent.process(email_data["type"], calendar_data["days_until_due"])
+        finance_data = self.finance_agent.check_budget_context(email_data["amount"], email_data["type"])
+        calendar_data = self.calendar_agent.check_due_date(email_data["due_date"])
+        risk_data = self.risk_agent.assess_risk(email_data["type"], calendar_data["days_until_due"])
         
         # 3. Plan: Create action items
-        task_data = self.task_agent.process(email_data["type"], email_data["due_date"])
+        task_data = self.task_agent.create_task(email_data["type"], email_data["due_date"])
         
         # 4. Act: Generate notification
-        notification_msg = self.notification_agent.process(
+        notification_msg = self.notification_agent.generate_notification(
             email_data["type"], 
             email_data["amount"], 
             email_data["due_date"], 

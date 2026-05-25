@@ -5,7 +5,7 @@ class CalendarAgent(BaseAgent):
     def __init__(self):
         super().__init__("Calendar Agent")
 
-    def process(self, due_date: str):
+    def check_due_date(self, due_date: str):
         # Mock logic to check schedule
         # Assuming format YYYY-MM-DD
         return {

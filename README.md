@@ -11,16 +11,23 @@ Managing personal finances, schedules, emails, and tasks can become overwhelming
   - **Reason**: Checks context (e.g., calendar availability, financial balance).
   - **Plan**: Formulates an action (e.g., create a task).
   - **Act**: Executes the action (e.g., sends a notification).
+- **Interactive Agent Test Panel**: Directly test the orchestration of agents from the dashboard.
+- **Approval Center**: Review high-risk agent actions with "Human-in-the-Loop" Approve/Reject mechanics.
+- **Agent Activity Log**: Real-time transparency showing exactly what each agent did.
+- **Navigation Routing**: Seamless navigation between dashboard modules with graceful placeholder states.
 
 ## Tech Stack
-- **Frontend**: React, Vite, Tailwind CSS (v4), Lucide React, Recharts, Axios
+- **Frontend**: React, Vite, React Router, Tailwind CSS (v4), Lucide React, Recharts, Axios
 - **Backend**: FastAPI, Uvicorn, Pydantic, Python-dotenv
-- **AI/Agents**: LangChain, simulated agent orchestration
+- **AI/Agents**: Simulated LangChain orchestration (Email, Finance, Calendar, Task, Risk, Notification agents)
 
 ## Folder Structure
 ```text
 lifeops-ai/
-├── frontend/             # React app with Tailwind CSS and Vite
+├── frontend/             # React app
+│   └── src/
+│       ├── components/   # UI Modules (AgentTestPanel, ApprovalCenter, etc.)
+│       └── App.jsx       # Routing and layout logic
 ├── backend/              # FastAPI application
 │   ├── app/
 │   │   ├── main.py       # API Entrypoint
@@ -28,7 +35,7 @@ lifeops-ai/
 │   │   └── services/     # Business logic and mock data
 ├── agents/               # LangChain-style simulated agents
 │   ├── orchestrator/     # Main coordinator agent
-│   └── ...               # Individual agent classes (Email, Finance, etc.)
+│   └── ...               # Individual agent classes
 └── ...
 ```
 
@@ -58,11 +65,15 @@ The backend will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000).
 - `GET /api/agents/test` - Runs a mock test of the agent pipeline
 - `POST /api/agents/test` - Allows passing a custom `event_text` payload to the orchestrator.
 
-## Current Status
-This project is currently an **MVP** utilizing mock data. The frontend is fully designed and styled according to the requirements, and it correctly fetches from the FastAPI backend. The agent framework is structured into logical components (BaseAgent, Orchestrator, etc.) and demonstrates the agentic pipeline with deterministic mock outputs.
+## Recommended Demo Flow
+1. **Open Dashboard**: View the unified dashboard showing AI Insights, Schedules, and Spending.
+2. **Review AI Insights**: Note how the system has flagged overlapping bills.
+3. **Agent Activity Log**: See exactly how the agents derived those insights.
+4. **Run Agent Test**: Use the Agent Test Panel to submit a new bill and watch the orchestrated response (Risk assessment, Task creation, Notification).
+5. **Approval Center**: Demonstrate the human-in-the-loop requirement for the high-risk payment that the agents just scheduled.
+6. **Navigate**: Click through the sidebar to view routing and module placeholders.
 
 ## Future Scope
 - **Real Integrations**: Gmail API, Google Calendar API, Plaid/Bank API.
 - **Vector Memory**: Implement LangGraph and a vector database for long-term memory retrieval.
-- **Approval Center**: A human-in-the-loop dashboard for confirming high-risk agent actions.
-- **Audit Logs**: Traceability of all agent decisions.
+- **Audit Logs**: Traceability of all agent decisions saved to a persistent database.

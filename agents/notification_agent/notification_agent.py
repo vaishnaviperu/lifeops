@@ -4,7 +4,7 @@ class NotificationAgent(BaseAgent):
     def __init__(self):
         super().__init__("Notification Agent")
 
-    def process(self, event_type: str, amount: int, due_date: str, risk_level: str):
+    def generate_notification(self, event_type: str, amount: int, due_date: str, risk_level: str):
         # Mock logic to generate notification
         date_str = "05 May" # static mapping for the test case
         
